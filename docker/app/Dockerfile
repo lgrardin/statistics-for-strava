@@ -57,8 +57,10 @@ RUN ls -l /var/www/vendor
 RUN rm -Rf docker
 RUN mkdir -p /var/www/var/cache/dev
 RUN mkdir -p /var/www/var/log
-RUN chown -R abc:abc /var/www/var/cache/dev
-RUN chown -R abc:abc /var/www/var/log
+
+# Importer les données Strava et générer les fichiers HTML à chaque build
+RUN bin/console app:strava:import-data || true
+RUN bin/console app:strava:build-files || true
 
 # Keep uid/gid same as pre-lsio for backwards compatibility
 ENV PUID=65534
