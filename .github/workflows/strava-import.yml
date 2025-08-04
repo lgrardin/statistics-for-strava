@@ -37,6 +37,11 @@ jobs:
         working-directory: ${{ github.workspace }}
 
 
+
+      - name: Debug: show DoctrineMigrationRunner.php
+        run: cat src/Infrastructure/Doctrine/Migrations/DoctrineMigrationRunner.php
+        working-directory: ${{ github.workspace }}
+
       - name: Debug: search /var/www/bin/console
         run: grep -r '/var/www/bin/console' . || echo 'No match'
         working-directory: ${{ github.workspace }}
