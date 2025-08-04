@@ -1,0 +1,28 @@
+name: Strava Import & Build
+
+on:
+  workflow_dispatch: # Permet de lancer manuellement
+  schedule:
+    - cron: '0 3 * * *' # Tous les jours à 3h UTC
+
+jobs:
+  import-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, intl, pdo, pdo_sqlite, curl, dom, gd, zip, bcmath, ctype, fileinfo, openssl, phar, session, simplexml, tokenizer, xml, xmlreader, xmlwriter, pcntl, iconv
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Import Strava data
+        run: php bin/console app:strava:import-data
+
+      - name: Build HTML files
+        run: php bin/console app:strava:build-files
