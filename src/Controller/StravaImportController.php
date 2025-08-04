@@ -14,7 +14,8 @@ class StravaImportController extends AbstractController
     public function import(Request $request): JsonResponse
     {
         $token = $request->query->get('token');
-        $expected = $_ENV['CRON_TOKEN'] ?? '';
+        // Accept CRON_TOKEN from $_ENV, $_SERVER, or getenv()
+        $expected = $_ENV['CRON_TOKEN'] ?? $_SERVER['CRON_TOKEN'] ?? getenv('CRON_TOKEN') ?: '';
 
         if ($token !== $expected) {
             return $this->json(['error' => 'Unauthorized'], 401);
@@ -34,7 +35,8 @@ class StravaImportController extends AbstractController
     public function build(Request $request): JsonResponse
     {
         $token = $request->query->get('token');
-        $expected = $_ENV['CRON_TOKEN'] ?? '';
+        // Accept CRON_TOKEN from $_ENV, $_SERVER, or getenv()
+        $expected = $_ENV['CRON_TOKEN'] ?? $_SERVER['CRON_TOKEN'] ?? getenv('CRON_TOKEN') ?: '';
 
         if ($token !== $expected) {
             return $this->json(['error' => 'Unauthorized'], 401);
