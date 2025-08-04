@@ -49,7 +49,8 @@ COPY docker/root /
 COPY . /var/www/
 RUN touch /var/www/.env
 RUN apk add --no-cache composer
-RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www
+RUN ln -sf /usr/bin/php84 /usr/bin/php
+RUN php84 /usr/bin/composer install --no-dev --optimize-autoloader --working-dir=/var/www
 RUN rm -Rf docker
 RUN mkdir -p /var/www/var/cache/dev
 RUN mkdir -p /var/www/var/log
