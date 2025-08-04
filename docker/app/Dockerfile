@@ -46,8 +46,8 @@ COPY docker/app/config/php.ini ${PHP_INI_DIR}/conf.d/custom.ini
 
 COPY docker/root /
 
-# Add application
 COPY . /var/www/
+RUN ls -l /var/www/config/app
 RUN touch /var/www/.env
 RUN ln -sf /usr/bin/php84 /usr/bin/php
 # Installer Composer manuellement avec PHP 8.4
