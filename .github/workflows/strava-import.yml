@@ -18,6 +18,11 @@ jobs:
           php-version: '8.4'
           extensions: mbstring, intl, pdo, pdo_sqlite, curl, dom, gd, zip, bcmath, ctype, fileinfo, openssl, phar, session, simplexml, tokenizer, xml, xmlreader, xmlwriter, pcntl, iconv
 
+
+      - name: Remove vendor directory
+        run: rm -rf vendor
+        working-directory: ${{ github.workspace }}
+
       - name: Clear Composer cache
         run: composer clear-cache
         working-directory: ${{ github.workspace }}
