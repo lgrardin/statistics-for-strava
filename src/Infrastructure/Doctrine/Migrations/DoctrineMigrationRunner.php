@@ -11,7 +11,7 @@ final readonly class DoctrineMigrationRunner implements MigrationRunner
     public function run(): void
     {
         $process = new Process(
-            command: ['/var/www/bin/console', 'doctrine:migrations:migrate', '--no-interaction'],
+            command: ['bin/console', 'doctrine:migrations:migrate', '--no-interaction'],
             timeout: null
         );
         $process->run();
@@ -24,7 +24,7 @@ final readonly class DoctrineMigrationRunner implements MigrationRunner
     public function isAtLatestVersion(): bool
     {
         $process = new Process(
-            command: ['/var/www/bin/console', 'doctrine:migrations:status'],
+            command: ['bin/console', 'doctrine:migrations:status'],
             timeout: null
         );
         $process->run();

@@ -19,7 +19,7 @@ class ExtractTranslationsConsoleCommand extends Command
         foreach (Locale::cases() as $locale) {
             $process = new Process(
                 command: [
-                    '/var/www/bin/console',
+                    'bin/console',
                     'translation:extract',
                     '--force',
                     '--prefix=',
