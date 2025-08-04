@@ -27,8 +27,13 @@ jobs:
         run: composer clear-cache
         working-directory: ${{ github.workspace }}
 
+
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
+        working-directory: ${{ github.workspace }}
+
+      - name: Debug: search /var/www/bin/console in vendor
+        run: grep -r '/var/www/bin/console' vendor/ || echo 'No match'
         working-directory: ${{ github.workspace }}
 
 
