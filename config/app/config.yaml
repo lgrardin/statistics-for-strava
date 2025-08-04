@@ -1,0 +1,70 @@
+general:
+  appUrl: 'https://statistics-for-strava-bdvo.onrender.com/'
+  appSubTitle: 'Lucas'
+  profilePictureUrl: null
+  ntfyUrl: null
+  athlete:
+    birthday: '1996-10-24'
+    maxHeartRateFormula: 'fox'
+    heartRateZones:
+      mode: absolute
+      default:
+        zone1: { from: 0, to: 121 }
+        zone2: { from: 122, to: 151 }
+        zone3: { from: 152, to: 166 }
+        zone4: { from: 167, to: 181 }
+        zone5: { from: 182, to: null }
+    weightHistory:
+      "2025-08-04": 82
+    ftpHistory:
+      "2023-01-01": 198
+      "2023-03-22": 220
+      "2023-03-29": 238
+      "2023-04-01": 250
+appearance:
+  locale: 'fr_FR'
+  unitSystem: 'metric'
+  timeFormat: 24
+  dateFormat:
+    short: 'd-m-y'
+    normal: 'd-m-Y'
+  dashboard:
+    layout: null
+  heatmap:
+    polylineColor: '#fc6719'
+    tileLayerUrl: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+    enableGreyScale: true
+  sportTypesSortingOrder: []
+import:
+  numberOfNewActivitiesToProcessPerImport: 250
+  sportTypesToImport: ['Run', 'TrailRun', 'Hike']
+  activityVisibilitiesToImport: []
+  skipActivitiesRecordedBefore: null
+  activitiesToSkipDuringImport: []
+metrics:
+  eddington:
+    - label: 'Ride'
+      showInNavBar: true
+      showInDashboardWidget: true
+      sportTypesToInclude: ['Ride', 'MountainBikeRide', 'GravelRide', 'VirtualRide']
+    - label: 'Run'
+      showInNavBar: true
+      showInDashboardWidget: true
+      sportTypesToInclude: ['Run', 'TrailRun', 'VirtualRun']
+    - label: 'Walk'
+      showInNavBar: false
+      showInDashboardWidget: false
+      sportTypesToInclude: ['Walk', 'Hike']
+  consistencyChallenges: []
+zwift:
+  level: null
+  racingScore: null
+integrations:
+  ai:
+    enabled: true
+    enableUI: true
+    provider: gemini
+    configuration:
+      key: 'VOTRE_CLE_GEMINI'
+      model: 'gemini-1.5-pro'
+      url: null
