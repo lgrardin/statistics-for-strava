@@ -51,6 +51,7 @@ RUN touch /var/www/.env
 RUN apk add --no-cache composer
 RUN ln -sf /usr/bin/php84 /usr/bin/php
 RUN php84 /usr/bin/composer install --no-dev --optimize-autoloader --working-dir=/var/www
+RUN ls -l /var/www/vendor
 RUN rm -Rf docker
 RUN mkdir -p /var/www/var/cache/dev
 RUN mkdir -p /var/www/var/log
