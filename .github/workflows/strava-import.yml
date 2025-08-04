@@ -38,6 +38,15 @@ jobs:
 
 
 
+
+      - name: Debug: print environment variables
+        run: printenv | sort
+        working-directory: ${{ github.workspace }}
+
+      - name: Debug: show Doctrine config
+        run: cat config/packages/doctrine.yaml || echo 'No doctrine.yaml'
+        working-directory: ${{ github.workspace }}
+
       - name: Debug: show DoctrineMigrationRunner.php
         run: cat src/Infrastructure/Doctrine/Migrations/DoctrineMigrationRunner.php
         working-directory: ${{ github.workspace }}
