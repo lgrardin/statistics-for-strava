@@ -30,7 +30,8 @@ RUN apk add --no-cache \
   php84-xmlreader \
   php84-xmlwriter \
   php84-zip \
-  php84-pcntl
+  php84-pcntl \
+  php84-iconv
 
 # Configure nginx - http
 COPY docker/app/config/nginx.conf /etc/nginx/nginx.conf
