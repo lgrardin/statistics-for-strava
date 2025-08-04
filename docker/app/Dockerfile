@@ -48,6 +48,8 @@ COPY docker/root /
 # Add application
 COPY . /var/www/
 RUN touch /var/www/.env
+RUN apk add --no-cache composer
+RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www
 RUN rm -Rf docker
 RUN mkdir -p /var/www/var/cache/dev
 RUN mkdir -p /var/www/var/log
