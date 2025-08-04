@@ -20,9 +20,12 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
+        working-directory: ${{ github.workspace }}
 
       - name: Import Strava data
         run: php bin/console app:strava:import-data
+        working-directory: ${{ github.workspace }}
 
       - name: Build HTML files
         run: php bin/console app:strava:build-files
+        working-directory: ${{ github.workspace }}
