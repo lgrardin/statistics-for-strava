@@ -26,7 +26,6 @@ phpstan.neon
 ###< phpstan/phpstan ###
 
 ###> app-build ###
-
 /config/app/custom-gear.yaml
 /config/app/gear-maintenance.yaml
 /build
