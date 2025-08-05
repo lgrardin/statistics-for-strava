@@ -21,7 +21,7 @@ class StravaImportController extends AbstractController
             return $this->json(['error' => 'Unauthorized'], 401);
         }
 
-        $process = new Process(['php', 'bin/console', 'app:strava:import-data']);
+        $process = new Process(['php', 'bin/console', 'app:strava:import-data'], dirname(__DIR__, 2));
         $process->run();
 
         if (!$process->isSuccessful()) {
@@ -46,7 +46,7 @@ class StravaImportController extends AbstractController
             return $this->json(['error' => 'Unauthorized'], 401);
         }
 
-        $process = new Process(['php', 'bin/console', 'app:strava:build-files']);
+        $process = new Process(['php', 'bin/console', 'app:strava:build-files'], dirname(__DIR__, 2));
         $process->run();
 
         if (!$process->isSuccessful()) {
