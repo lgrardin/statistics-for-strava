@@ -1,3 +1,11 @@
+    #[Route('/cron/debug-env', name: 'cron_debug_env', methods: ['GET'])]
+    public function debugEnv(Request $request): JsonResponse
+    {
+        return $this->json([
+            'STRAVA_CLIENT_ID' => $_ENV['STRAVA_CLIENT_ID'] ?? $_SERVER['STRAVA_CLIENT_ID'] ?? getenv('STRAVA_CLIENT_ID'),
+            'all_env' => array_keys($_ENV),
+        ]);
+    }
 <?php
 
 namespace App\Controller;
