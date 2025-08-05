@@ -1,11 +1,3 @@
-    #[Route('/cron/debug-env', name: 'cron_debug_env', methods: ['GET'])]
-    public function debugEnv(Request $request): JsonResponse
-    {
-        return $this->json([
-            'STRAVA_CLIENT_ID' => $_ENV['STRAVA_CLIENT_ID'] ?? $_SERVER['STRAVA_CLIENT_ID'] ?? getenv('STRAVA_CLIENT_ID'),
-            'all_env' => array_keys($_ENV),
-        ]);
-    }
 <?php
 
 namespace App\Controller;
@@ -18,6 +10,14 @@ use Symfony\Component\Process\Process;
 
 class StravaImportController extends AbstractController
 {
+    #[Route('/cron/debug-env', name: 'cron_debug_env', methods: ['GET'])]
+    public function debugEnv(Request $request): JsonResponse
+    {
+        return $this->json([
+            'STRAVA_CLIENT_ID' => $_ENV['STRAVA_CLIENT_ID'] ?? $_SERVER['STRAVA_CLIENT_ID'] ?? getenv('STRAVA_CLIENT_ID'),
+            'all_env' => array_keys($_ENV),
+        ]);
+    }
     #[Route('/cron/import', name: 'cron_import', methods: ['POST'])]
     public function import(Request $request): JsonResponse
     {
