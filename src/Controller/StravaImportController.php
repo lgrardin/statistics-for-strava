@@ -25,7 +25,11 @@ class StravaImportController extends AbstractController
         $process->run();
 
         if (!$process->isSuccessful()) {
-            return $this->json(['error' => $process->getErrorOutput()], 500);
+            return $this->json([
+                'error' => $process->getErrorOutput(),
+                'output' => $process->getOutput(),
+                'exit_code' => $process->getExitCode(),
+            ], 500);
         }
 
         return $this->json(['status' => 'ok', 'output' => $process->getOutput()]);
@@ -46,7 +50,11 @@ class StravaImportController extends AbstractController
         $process->run();
 
         if (!$process->isSuccessful()) {
-            return $this->json(['error' => $process->getErrorOutput()], 500);
+            return $this->json([
+                'error' => $process->getErrorOutput(),
+                'output' => $process->getOutput(),
+                'exit_code' => $process->getExitCode(),
+            ], 500);
         }
 
         return $this->json(['status' => 'ok', 'output' => $process->getOutput()]);
