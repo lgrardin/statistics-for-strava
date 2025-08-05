@@ -31,17 +31,8 @@ class StravaImportController extends AbstractController
 
         $env = $_ENV + $_SERVER;
         $process = new Process(['php', 'bin/console', 'app:strava:import-data'], dirname(__DIR__, 2), $env);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            return $this->json([
-                'error' => $process->getErrorOutput(),
-                'output' => $process->getOutput(),
-                'exit_code' => $process->getExitCode(),
-            ], 500);
-        }
-
-        return $this->json(['status' => 'ok', 'output' => $process->getOutput()]);
+        $process->start(); // Lancement asynchrone
+        return $this->json(['status' => 'started']);
     }
 
     #[Route('/cron/build', name: 'cron_build', methods: ['POST'])]
@@ -57,16 +48,7 @@ class StravaImportController extends AbstractController
 
         $env = $_ENV + $_SERVER;
         $process = new Process(['php', 'bin/console', 'app:strava:build-files'], dirname(__DIR__, 2), $env);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            return $this->json([
-                'error' => $process->getErrorOutput(),
-                'output' => $process->getOutput(),
-                'exit_code' => $process->getExitCode(),
-            ], 500);
-        }
-
-        return $this->json(['status' => 'ok', 'output' => $process->getOutput()]);
+        $process->start(); // Lancement asynchrone
+        return $this->json(['status' => 'started']);
     }
 }
